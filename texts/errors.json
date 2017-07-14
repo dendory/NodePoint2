@@ -1,0 +1,15 @@
+{
+	"EN":
+	{
+		"OK": "Operation succeeded.",
+		"ERR_INVALID_CMD": "Invalid operation.",
+		"ERR_MISSING_CREDENTIALS": "A username and password must be provided.",
+		"ERR_INVALID_CREDENTIALS": "Invalid credentials provided. Please try again.",
+		"ERR_INVALID_AUTHKEY": "Authentication information invalid. Please login again.",
+		"ERR_NOT_AUTHORIZED": "You do not have the required permissions to access this operation.",
+		"ERR_MISSING_FIELDS": "Please provide all required fields.",
+		"ERR_MISFORMED_EMAIL": "Email must be a valid email of 100 characters or less.",
+		"ERR_MISFORMED_USERNAME": "Username must be an alphanumeric string with no space of 3 to 100 characters.",
+		"ERR_USER_CREATION": "User creation failed. Make sure the username does not already exist."
+	}
+}

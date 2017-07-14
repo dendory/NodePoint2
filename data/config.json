@@ -1,0 +1,7 @@
+{
+    "2fa": false,
+    "query_limit": 5000,
+    "lang": "EN",
+    "auth": "simple",
+    "authkey_expiry": 8
+}
