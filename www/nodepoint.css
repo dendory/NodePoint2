@@ -1,0 +1,43 @@
+.wrapper
+{
+    margin: 15px;
+}
+.panel-body
+{
+    width: 100%;
+}
+#commands
+{
+    height: 745px;
+    overflow-y: scroll;
+}
+#parameters
+{
+    height: 200px;
+    overflow-y: scroll;
+}
+#output
+{
+    height: 430px;
+	padding: 0px;
+}
+.copyright
+{
+    text-align: center;
+    font-style: italic;
+    font-size: 75%;
+}
+body 
+{
+    overflow-x:hidden;
+}
+.np_form
+{
+	display: none;
+}
+hr
+{
+	height: 1px;
+	background: #CCCCCC;
+}
+

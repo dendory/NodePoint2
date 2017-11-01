@@ -2,10 +2,15 @@
 # NodePoint 2 - (C) 2017 Patrick Lambert - http://nodepoint.ca
 
 import os
-import connix
 import sqlite3
 usersdb = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data", "users.db")
 miscdb = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data", "misc.db")
+
+try:
+	import connix
+except:
+	print("Library 'connix' is missing - pip install connix")
+	quit(1)
 
 if os.geteuid() != 0:
 	print("You must run this script as root")

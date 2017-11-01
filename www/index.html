@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>NodePoint</title>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link href="bootstrap.min.css" rel="stylesheet" />
+		<link href="nodepoint.css" rel="stylesheet" />
+		<script src="nodepoint.js"></script>
+		<script src="jquery-min.js"></script>
+		<script src="bootstrap.min.js"></script>
+	</head>
+	<body onload="init()">
+		<div class="wrapper">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><b>Commands</b></div>
+
+<!-- commands panel -->
+						<div class="panel-body" id="commands">
+							<div class="list-group">
+								<h4>Miscellaneous</h4>
+								<a href="javascript:show_form('login_form');" class="list-group-item list-group-item-success cmd">Login</a>
+								<a href="javascript:show_form('help_form');" class="list-group-item list-group-item-success cmd">Help</a>
+								<a href="javascript:show_form('status_form');" class="list-group-item list-group-item-success cmd">Status</a>
+								<a href="javascript:show_form('texts_form');" class="list-group-item list-group-item-success cmd">Texts</a>
+								<a href="javascript:show_form('show_log_form');" class="list-group-item list-group-item-danger cmd">Show log</a>
+								<h4>Users</h4>
+								<a href="javascript:show_form('user_info_form');" class="list-group-item list-group-item-danger cmd">User info</a>
+								<a href="javascript:show_form('list_users_form');" class="list-group-item list-group-item-danger cmd">List users</a>
+								<a href="javascript:show_form('add_user_form');" class="list-group-item list-group-item-danger cmd">Add user</a>
+								<a href="javascript:show_form('mod_user_form');" class="list-group-item list-group-item-danger cmd">Modify user</a>
+								<a href="javascript:show_form('ban_user_form');" class="list-group-item list-group-item-danger cmd">Ban user</a>
+								<a href="javascript:show_form('list_groups_form');" class="list-group-item list-group-item-danger cmd">List groups</a>
+								<a href="javascript:show_form('add_group_form');" class="list-group-item list-group-item-danger cmd">Add group</a>
+								<a href="javascript:show_form('mod_group_form');" class="list-group-item list-group-item-danger cmd">Modify group</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<!-- parameters panel -->
+				<div class="col-md-9">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><b>Parameters</b></div>
+						<div class="panel-body" id="parameters">
+
+<!-- Login -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='login_form'>
+					            <input type='hidden' name='cmd' value='login'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-1'></div>
+					                    <div class='col col-md-5'><center><b>Username:</b></center><input type='text' name='username' value='' class='form-control'></div>
+					                    <div class='col col-md-5'><center><b>Password:</b></center><input type='password' name='password' value='' class='form-control'></div>
+					                    <div class='col col-md-1'></div>
+					                </div>
+					            </p>
+					            <hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Login'></div>
+					                    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Show log -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='show_log_form'>
+					            <input type='hidden' name='cmd' value='show_log'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Show recent log entries'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- List users -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='list_users_form'>
+					            <input type='hidden' name='cmd' value='list_users'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='List existing users'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- List groups -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='list_groups_form'>
+					            <input type='hidden' name='cmd' value='list_groups'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='List existing groups'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Add user -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='add_user_form'>
+					            <input type='hidden' name='cmd' value='add_user'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+								<p>
+                                    <div class='row'>
+                                        <div class='col col-md-3'><center><b>Username:</b></center><input type='text' name='username' value='' class='form-control'></div>
+                                        <div class='col col-md-3'><center><b>Password:</b></center><input type='password' name='password' value='' class='form-control'></div>
+                                        <div class='col col-md-3'><center><b>Full name:</b></center><input type='text' name='fullname' value='' class='form-control'></div>
+                                        <div class='col col-md-3'><center><b>Email:</b></center><input type='text' name='email' value='' class='form-control'></div>
+					                </div>
+					            </p>
+					            <hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Add a new user'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Add group -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='add_group_form'>
+					            <input type='hidden' name='cmd' value='add_group'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+								<p>
+                                    <div class='row'>
+					                    <div class='col col-md-2'></div>
+                                        <div class='col col-md-4'><center><b>Group name:</b></center><input type='text' name='groupname' value='' class='form-control'></div>
+                                        <div class='col col-md-4'><center><b>Permissions:</b></center><input type='text' name='perms' value='' class='form-control'></div>
+					                    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					            <hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Add a new group'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Mod user -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='mod_user_form'>
+					            <input type='hidden' name='cmd' value='mod_user'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+								<p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+                                        <div class='col col-md-8'><center><b>User ID:</b></center><input type='text' name='userid' value='' class='form-control'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+                                    <div class='row'>
+                                        <div class='col col-md-4'><center><b>New username (optional):</b></center><input type='text' name='username' value='' class='form-control'></div>
+                                        <div class='col col-md-4'><center><b>New full name (optional):</b></center><input type='text' name='fullname' value='' class='form-control'></div>
+                                        <div class='col col-md-4'><center><b>New email (optional):</b></center><input type='text' name='email' value='' class='form-control'></div>
+					                </div>
+					            </p>
+								<hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Update an existing user'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Mod group -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='mod_group_form'>
+					            <input type='hidden' name='cmd' value='mod_group'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+								<p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+                                        <div class='col col-md-8'><center><b>Group ID:</b></center><input type='text' name='groupid' value='' class='form-control'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+                                    <div class='row'>
+                   					    <div class='col col-md-2'></div>
+	                                    <div class='col col-md-4'><center><b>New groupname (optional):</b></center><input type='text' name='groupname' value='' class='form-control'></div>
+                                        <div class='col col-md-4'><center><b>New permissions (optional):</b></center><input type='text' name='perms' value='' class='form-control'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+								<hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Update an existing group'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Ban user -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='ban_user_form'>
+					            <input type='hidden' name='cmd' value='ban_user'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+								<p>
+                                    <div class='row'>
+					                    <div class='col col-md-1'></div>
+                                        <div class='col col-md-5'><center><b>User ID:</b></center><input type='text' name='userid' value='' class='form-control'></div>
+                                        <div class='col col-md-5'><center><b>Time period (in minutes):</b></center><input type='text' name='minutes' value='' class='form-control'></div>
+					                    <div class='col col-md-1'></div>
+					                </div>
+					            </p>
+								<hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Ban user for a period of time'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Status -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='status_form'>
+					            <input type='hidden' name='cmd' value='status'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Retrieve server status'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Texts -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='texts_form'>
+					            <input type='hidden' name='cmd' value='texts'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Retrieve strings and error texts'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- Help -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='help_form'>
+					            <input type='hidden' name='cmd' value='help'>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Help on available commands'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+<!-- User info -->
+					        <form method='POST' action='api/index.py' target='output_frame' class='np_form' id='user_info_form'>
+					            <input type='hidden' name='cmd' value='user_info'>
+					            <input type='hidden' name='authkey' value='' class='form-control authkey'>
+								<p>
+                                    <div class='row'>
+					                    <div class='col col-md-2'></div>
+                                        <div class='col col-md-4'><center><b>User ID (optional):</b></center><input type='text' name='userid' value='' class='form-control'></div>
+                                        <div class='col col-md-4'><center><b>Username (optional):</b></center><input type='text' name='username' value='' class='form-control'></div>
+					                    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					            <hr>
+					            <p>
+					                <div class='row'>
+					                    <div class='col col-md-2'></div>
+					                    <div class='col col-md-8'><input type='submit' class='form-control btn btn-success' value='Retrieve user information'></div>
+                					    <div class='col col-md-2'></div>
+					                </div>
+					            </p>
+					        </form>
+
+						</div>
+					</div>
+
+<!-- output panel -->
+					<div class="panel panel-primary">
+						<div class="panel-heading"><b>Output</b></div>
+						<div class="alert" role="alert" id="output_msg" style="margin-bottom:0px">&nbsp;</div>
+						<div class="panel-body" id="output">
+							<iframe style="width:100%; height:100%;" frameborder=0 name="output_frame" onload="parse_output();" id="output_frame"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row copyright"><a href="https://nodepoint.ca">NodePoint 2.0.0-alpha1</a> - API Explorer</div>
+		</div>
+	</body>
+</html>
